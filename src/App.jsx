@@ -1,34 +1,23 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Header from './components/Header';
+import Tasks from './components/Tasks';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState([
+    {id: 1, text: "Doctors Appointment", day: "Jan 20 2024 6:00pm", reminder: true},
+    {id: 2, text: "Meeting with Client", day: "Jan 21 2024 2:30pm", reminder: true},
+    {id: 3, text: "Grocery Shopping", day: "Jan 22 2024 5:00pm", reminder: false},
+    {id: 4, text: "Drop Kids to School", day: "Jan 22 2024 11:00am", reminder: true}
+])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='container'>
+      <Header />
+      <Tasks tasks={tasks} />
+    </div>
   )
 }
 
