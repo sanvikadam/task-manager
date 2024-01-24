@@ -1,7 +1,9 @@
-const Tasks = ({tasks}) => {
+import Task from './Task';
+
+const Tasks = ({tasks, onDelete, toggleReminder}) => {
   return (
     <>
-      {tasks.map((task)=> (<h3 className="task" key={task.id}>{task.text}</h3>))}
+      {tasks.map((task)=> (<Task className="task" key={task.id} task={task} onDelete={onDelete} toggleReminder={toggleReminder} />))}
     </>
   )
 }

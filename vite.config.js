@@ -3,6 +3,6 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://github.com/sanvikadam/task-manager.git",
+  base: "/task-manager",
   plugins: [react()],
 });
