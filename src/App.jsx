@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Header from './components/Header';
 import Tasks from './components/Tasks';
-
+import AddTask from './components/AddTask';
 
 
 function App() {
@@ -14,13 +14,24 @@ function App() {
     {id: 5, text: "Drop Kids to School", day: "Jan 22 2024 11:00am", reminder: true}
 ])
 
+const name = "sanvi";
+
+console.log(...name);
+
+const addTask = (task) => {
+  console.log(task);
+  const id = Math.floor((Math.random() * 100) + 1);
+  const newTask = {id, ...task};
+  console.log(newTask);
+  setTasks([...tasks, newTask]);
+  console.log(tasks);
+}
+
 const deleteTask = (id) => {
-  console.log("object" +id)
   setTasks(tasks.filter((task) => task.id !== id));
 }
 
 const toggleReminder = (id) => {
-  // console.log("reminder"+id); 1
   setTasks(
     tasks.map((task)=> task.id == id ? {...task, reminder: !task.reminder} : task)
   )
@@ -29,6 +40,7 @@ const toggleReminder = (id) => {
   return (
     <div className='container'>
       <Header />
+      <AddTask addTask={addTask} />
       {(tasks.length > 0 ? 
       <Tasks tasks={tasks} onDelete={deleteTask} toggleReminder={toggleReminder}/> : "No Record"
     )}
