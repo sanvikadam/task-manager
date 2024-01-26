@@ -2,17 +2,13 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
 
-const Header = ({title, name}) => {
-    const [btnstate, setBtnState] = useState("Hello Sanvi");
-
-    const handleDataFromChild = (data) => {
-        console.log(data);
-        setBtnState(data);
-    }
+const Header = ({addTask, textChange}) => {
+    console.log(textChange);
+    
   return (
     <div className='header'>
       <h2>Task Tracker</h2>
-      <Button title="Add" color="green" sendDataToParent={handleDataFromChild} />
+      <Button title="Add" color={textChange ? 'red' : 'green'} onAdd={addTask} changeStatus={textChange} />
     </div>
   )
 }

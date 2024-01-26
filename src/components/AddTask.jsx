@@ -1,19 +1,27 @@
 import { useState } from "react";
+import moment from "moment";
 
 const AddTask = ({addTask}) => {
 
     const [text, setText] = useState("");
     const [day, setDay] = useState("");
+    const [actualDate, setActualDate]= useState("");
     const [reminder, setReminder] = useState(false);
-
-    console.log({text});
+    const date = new Date();
 
     const onTextChange =(e)=> {
         setText(e.target.value);
     }
 
     const onDayChange = (e) => {
-        setDay(e.target.value);
+        var getDate = e.target.value;
+        var dateObject = new Date(getDate);
+        console.log((moment(dateObject).format("ll")));
+        var setDate = moment(dateObject).format("ll") + " " +moment(date).format("LT");
+        console.log(getDate);
+        setActualDate(getDate);
+        setDay(setDate);
+        // dateStr = setDate;
     }
 
     const onCheckReminder = (e) => {
@@ -22,7 +30,7 @@ const AddTask = ({addTask}) => {
 
     const submitForm = (e) => {
         e.preventDefault();
-        let formData = {text, day, reminder};
+        let formData = {text, actualDate, day, reminder};
         console.log(formData);
         addTask(formData);
         setText("");
@@ -40,7 +48,7 @@ const AddTask = ({addTask}) => {
         </div>
         <div className="form-control">
             <label>Day & Time</label>
-            <input type="text" placeholder="Add Date & Time" value={day} onChange={onDayChange} />
+            <input type="date" placeholder="Add Date & Time" value={actualDate} min={date.toISOString().split('T')[0]} onChange={onDayChange} />
         </div>
         <div className="form-control-check">
             <label>Checkbox</label>

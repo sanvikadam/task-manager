@@ -1,19 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types' 
 
-const Button = ({title, color, sendDataToParent}) => {
-
-    const [childData, setChildData]= useState("");
-
-    const sendDataFromChildToParent = () => {
-        let setData = "Data change from Children";
-        setChildData(setData);
-        sendDataToParent(setData);
-    }
-
+const Button = ({title, color, onAdd, changeStatus}) => {
+    console.log(changeStatus);
   return (
     <>
-        <button className='btn' style={{'backgroundColor': color}} onClick={sendDataFromChildToParent}>{title}</button>
+        <button className='btn' style={{backgroundColor: color}} onClick={onAdd}>{changeStatus ? 'Close' : 'Add'}</button>
     </>
     )
 }
