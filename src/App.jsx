@@ -18,15 +18,13 @@ function App() {
   },[]);
 
   // Fetch Tasks
-
   const fetchTasks = async() => {
     const res = await fetch("http://localhost:5000/tasks");
     const data = await res.json();
-    
     return data;
-    console.log(data);
   }
 
+// Add Task to the database
 const addTask = async (task) => {
   const res = await fetch("http://localhost:5000/tasks", {
     method: "POST",
@@ -37,18 +35,10 @@ const addTask = async (task) => {
   })
 
   const data = await res.json();
-  console.log(data);
   setTasks([...tasks, data]);
-
-
-  // console.log(task);
-  // const id = Math.floor((Math.random() * 100) + 1);
-  // const newTask = {id, ...task};
-  // console.log(newTask);
-  // setTasks([...tasks, newTask]);
-  // console.log(tasks);
 }
 
+// Delete Tasks and update the database
 const deleteTask = async (id) => {
 
   await fetch(`http://localhost:5000/tasks/${id}`, {
